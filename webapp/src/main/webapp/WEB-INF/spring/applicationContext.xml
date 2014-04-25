@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+ 
+  <bean id="systemProperties" class="java.lang.System" factory-method="getProperties" />
+
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="location">
+      <value>classpath:conf/${com.agilistic.locvip.env}/my.properties</value>
+    </property>
+  </bean> 
+ 
+  <context:component-scan base-package="com.agilistic.locvip.rest" />
+   
+  <bean id="apartmentService" class="com.agilistic.locvip.service.ApartmentService" />
+
+  <!-- 
+	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+  -->
+   
+</beans>
